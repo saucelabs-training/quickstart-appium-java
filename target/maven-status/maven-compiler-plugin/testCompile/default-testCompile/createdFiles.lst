@@ -1,0 +1,15 @@
+tests/RDC/Appium_Android_RDC_Web_Test.class
+tests/RDC/Appium_iOS_RDC_App_Test.class
+tests/Config.class
+tests/EmuSim/Appium_iOS_SIM_Web_Test.class
+tests/RDC/Appium_Android_RDC_App_Test.class
+tests/EmuSim/Appium_iOS_SIM_App_Test.class
+tests/crossDevices/SwagRDSCrossDevicesTest.class
+tests/EmuSim/Appium_Android_EMU_Web_Test.class
+tests/helpers/Utils.class
+tests/Desktop/Web_Local_Desktop_Test.class
+tests/EmuSim/Appium_Android_EMU_App_Test.class
+tests/crossDevices/SwagRDSCrossDevices2Test.class
+tests/Desktop/Web_Desktop_Test.class
+tests/RDC/Appium_iOS_RDC_Web_Test.class
+tests/crossDevices/listeners/BaseTestListener.class

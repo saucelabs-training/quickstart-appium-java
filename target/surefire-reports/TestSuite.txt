@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 54.591 s <<< FAILURE! - in TestSuite
+tests.EmuSim.Appium_Android_EMU_Web_Test.loginToSwagLabsWebTestValid  Time elapsed: 7.161 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"class name","selector":"product_label"}
+  (Session info: chrome=88.0.4324.181)
+  (Driver info: chromedriver=88.0.4324.96 (68dba2d8a0b149a1d3afac56fa74648032bcf46b-refs/branch-heads/4324@{#1784}),platform=Linux 5.4.0-74-generic x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'SL-1134', ip: 'fe80:0:0:0:4eb:b03a:487b:7392%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.15.7', java.version: '14.0.2'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: com.google.android.apps.chr..., appPackage: com.android.chrome, automationName: UiAutomator2, browserName: chrome, databaseEnabled: false, desired: {automationName: UiAutomator2, browserName: chrome, deviceName: Android GoogleAPI Emulator, eventTimings: true, goog:chromeOptions: {args: [], extensions: [], w3c: false}, maxTypingFrequency: 8, newCommandTimeout: 0, noReset: true, noSign: true, orientation: PORTRAIT, platformName: Android, platformVersion: 11.0, proxy: {proxyAutoconfigUrl: http://127.0.0.1:19876/pac.js, proxyType: PAC}, udid: emulator-5554, webdriver.remote.quietExceptions: false}, deviceApiLevel: 30, deviceManufacturer: Google, deviceModel: sdk_gphone_x86_64_arm64, deviceName: emulator-5554, deviceScreenDensity: 320, deviceScreenSize: 768x1280, deviceUDID: emulator-5554, eventTimings: true, goog:chromeOptions: {args: [], extensions: [], w3c: false}, hasMetadata: true, javascriptEnabled: true, locationContextEnabled: false, maxTypingFrequency: 8, networkConnectionEnabled: true, newCommandTimeout: 0, noReset: true, noSign: true, orientation: PORTRAIT, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 11, proxy: Proxy(pac: http://127.0.0.1..., statBarHeight: 48, takesScreenshot: true, udid: emulator-5554, viewportRect: {height: 1136, left: 0, top: 48, width: 768}, warnings: {}, webStorageEnabled: false, webdriver.remote.quietExceptions: false, webdriver.remote.sessionid: 5705ad6c7a42435d9fd6c81132c...}
+Session ID: 5705ad6c7a42435d9fd6c81132c163d1
+*** Element info: {Using=class name, value=product_label}
+	at tests.EmuSim.Appium_Android_EMU_Web_Test.isOnProductsPage(Appium_Android_EMU_Web_Test.java:111)
+	at tests.EmuSim.Appium_Android_EMU_Web_Test.loginToSwagLabsWebTestValid(Appium_Android_EMU_Web_Test.java:94)
+

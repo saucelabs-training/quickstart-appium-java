@@ -1,0 +1,47 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Appium Native Demo Suite" parallel="tests" thread-count="5" verbose="0">
+
+	<listeners>
+		<listener class-name="tests.crossDevices.listeners.BaseTestListener"/>
+	</listeners>
+
+	<test name="Simple execution tests cross devices Android 1" enabled="true">
+		<parameter name="deviceName" value="Samsung.*"></parameter>
+<!--		<parameter name="platformVersion" value="9"></parameter>-->
+		<parameter name="platformName" value="Android"></parameter>
+		<parameter name="automationName" value="UiAutomator2"></parameter>
+		<parameter name="app" value="storage:filename=Android.SauceLabs.Mobile.Sample.app.2.3.0.apk"></parameter>
+		<parameter name="noReset" value="true"></parameter>
+		<parameter name="cacheId" value="1111"></parameter>
+		<classes>
+			<class name="tests.crossDevices.SwagRDSCrossDevicesTest"/>
+		</classes>
+	</test>
+
+	<test name="Simple execution tests cross devices Android 2" enabled="true">
+		<parameter name="deviceName" value="Samsung.*"></parameter>
+		<!--		<parameter name="platformVersion" value="9"></parameter>-->
+		<parameter name="platformName" value="Android"></parameter>
+		<parameter name="automationName" value="UiAutomator2"></parameter>
+		<parameter name="app" value="storage:filename=Android.SauceLabs.Mobile.Sample.app.2.3.0.apk"></parameter>
+		<parameter name="noReset" value="true"></parameter>
+		<parameter name="cacheId" value="2222"></parameter>
+		<classes>
+			<class name="tests.crossDevices.SwagRDSCrossDevices2Test"/>
+		</classes>
+	</test>
+
+	<test name="Simple execution tests cross devices iOS 1" enabled="true">
+		<parameter name="deviceName" value="iPhone.*"></parameter>
+		<!--		<parameter name="platformVersion" value="14"></parameter>-->
+		<parameter name="platformName" value="iOS"></parameter>
+		<parameter name="automationName" value="XCuiTest"></parameter>
+		<parameter name="app" value="storage:filename=iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.3.0.ipa"></parameter>
+		<parameter name="noReset" value="true"></parameter>
+		<parameter name="cacheId" value="3333"></parameter>
+		<classes>
+			<class name="tests.crossDevices.SwagRDSCrossDevicesTest"/>
+			<class name="tests.crossDevices.SwagRDSCrossDevices2Test"/>
+		</classes>
+	</test>
+</suite>

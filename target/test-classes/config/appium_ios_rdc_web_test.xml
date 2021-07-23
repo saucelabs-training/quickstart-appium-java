@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="iOS Native Demo Suite" parallel="methods"
+	   thread-count="100" verbose="0">
+
+	<test name="Simple execution tests ios" enabled="true">
+
+		<classes>
+			<class name="tests.RDC.Appium_iOS_RDC_Web_Test"/>
+		</classes>
+	</test>
+</suite>

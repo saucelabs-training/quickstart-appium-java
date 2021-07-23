@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="iOS Simulator Native Demo Suite" parallel="methods"
+	   thread-count="1" verbose="0">
+
+	<test name="Simple execution tests Simulator iOS" parallel="methods" enabled="true">
+		<classes>
+			<class name="tests.EmuSim.Appium_iOS_SIM_App_Test"/>
+		</classes>
+	</test>
+</suite>
