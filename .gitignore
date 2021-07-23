@@ -21,3 +21,4 @@ perfectoReports/
 /bin
 Drivers/
 target/surefire-reports/index.html
+*.iml
