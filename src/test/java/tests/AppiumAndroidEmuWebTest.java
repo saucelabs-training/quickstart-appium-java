@@ -19,7 +19,7 @@ import java.net.URL;
 import static tests.Config.region;
 
 
-public class Appium_Android_EMU_Web_Test {
+public class AppiumAndroidEmuWebTest {
 
     private static ThreadLocal<AndroidDriver> androidDriver = new ThreadLocal<AndroidDriver>();
 

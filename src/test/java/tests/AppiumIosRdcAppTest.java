@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Appium_iOS_RDC_App_Test {
+public class AppiumIosRdcAppTest {
 
     private static ThreadLocal<IOSDriver> iosDriver = new ThreadLocal<IOSDriver>();
 
