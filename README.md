@@ -1,20 +1,8 @@
 # Running Appium and Selenium Tests on Sauce Labs Platform
-This project contains Java examples for running Appium tests on Sauce Labs platform:  
-On Real Devices:  
+This project contains TestNG Java examples for two examples of tests that can be run on the Sauce Labs Cloud, intended to go alongside the [Doc](). For comprehensive examples of both Appium and iOS on Sauce Labs VM & Real Devices for both web and app tests, [see this repo](https://github.com/eyaly/SauceAppiumSample#readme). 
 
-- [Native Android App on real devices](#run-native-app-tests-on-sauce-labs-android-real-devices-in-the-sauce-labs-platform)
-- [Web App on real Android devices](#run-web-app-tests-on-sauce-labs-android-real-devices-in-the-sauce-labs-platform)
-- [Native iOS App on real devices](#run-native-app-tests-on-sauce-labs-ios-real-devices-in-the-sauce-labs-platform)
-- [Web App on real iOS devices](#run-web-app-tests-on-sauce-labs-ios-real-devices-in-the-sauce-labs-platform)
-
-On Simulators and Emulators:  
-- [Native Android App on Emulators](#run-native-app-tests-on-sauce-labs-android-emulators)
-- [Web App on Android Emulators](#run-web-app-tests-on-sauce-labs-android-emulators)
-- [Native iOS App on Simulators](#run-native-app-tests-on-sauce-labs-ios-simulators)
-- [Web App on iOS Simulators](#run-web-app-tests-on-sauce-labs-ios-simulators)
-
-On Virtual Machine (VM):  
-- [Run on Sauce VM](#run-browser-on-Sauce-virtual-machine)
+* The first is an Android Appium test on a mobile browser, using the [Swag Labs web app](https://www.saucedemo.com/) testing on an emulator on a Sauce Labs VM
+* The Second is an iOS Appium test run against the [Swage Labs (React) mobile app](https://github.com/saucelabs/sample-app-mobile/releases) testing on a Sauce Labs Real Device
 
 
 The framework uses testNG xml file for parallel executions. All the tests in the same class will run in parallel on different devices 
@@ -42,31 +30,8 @@ For more information on this step please visit: [Application Storage](https://wi
 * Appium Capabilities for Real Device Testing: [Appium Capabilities](https://wiki.saucelabs.com/display/DOCS/Appium+Capabilities+for+Real+Device+Testing).
 * Sauce Labs Data Center Endpoints: [Data Center EndPoints](https://wiki.saucelabs.com/display/DOCS/Data+Center+Endpoints).
 * How to set the pass/fail status of a test: [Annotating Tests with Selenium's JavaScript Executor](https://wiki.saucelabs.com/display/DOCS/Annotating+Tests+with+Selenium%27s+JavaScript+Executor).
-## Run Native App tests on Sauce Labs Android real devices in the Sauce Labs Platform
-If you want to run the Native Android App tests on Sauce Labs real Android devices then you can run the Android tests with
 
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=appium_android_rdc_app_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=appium_android_rdc_app_test.xml -Dregion=eu
-    
-The tests will be executed on an any available Samsung device.
 
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
-
-## Run Web App tests on Sauce Labs Android real devices in the Sauce Labs Platform
-If you want to run the Web App tests on Sauce Labs real Android devices then you can run the web tests with
-
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=appium_android_rdc_web_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=appium_android_rdc_web_test.xml -Dregion=eu
-    
-The tests will be executed on any available Samsung device.
-
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
 
 ## Run Native App tests on Sauce Labs iOS real devices in the Sauce Labs Platform
 If you want to run the Native iOS App tests on Sauce Labs real devices then you can run the iOS tests with
@@ -78,32 +43,8 @@ If you want to run the Native iOS App tests on Sauce Labs real devices then you 
     mvn clean install -DtestngXmlFile=appium_ios_rdc_app_test.xml -Dregion=eu
     
 The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
 
-## Run Web App tests on Sauce Labs iOS real devices in the Sauce Labs Platform
-If you want to run the Web App tests on Sauce Labs real iOS devices then you can run the web tests with
 
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=appium_ios_rdc_web_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=appium_ios_rdc_web_test.xml -Dregion=eu
-    
-The tests will be executed on a iPhone 8.
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
-
-## Run Native App tests on Sauce Labs Android Emulators
-If you want to run the Native Android App tests on Sauce Labs Android Emulator devices then you can run the Android tests with
-
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=appium_android_emu_app_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=appium_android_emu_app_test.xml -Dregion=eu
-    
-The tests will be executed on Android Emulator, platform version 8.0.
-
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
 
 ## Run Web App tests on Sauce Labs Android Emulators
 If you want to run the Web App tests on Sauce Labs real Android devices then you can run the web tests with
@@ -116,40 +57,3 @@ If you want to run the Web App tests on Sauce Labs real Android devices then you
     
 The tests will be executed on Android Emulator, platform version 8.0.
 
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
-
-## Run Native App tests on Sauce Labs iOS Simulators
-If you want to run the Native iOS App tests on Sauce Labs Simulator devices then you can run the iOS tests with
-
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=appium_ios_sim_app_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=appium_ios_sim_app_test.xml -Dregion=eu
-    
-The tests will be executed on a iPhone 8 Simulator.
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
-
-## Run Web App tests on Sauce Labs iOS Simulators
-If you want to run the Web App tests on Sauce Labs iOS Simulator devices then you can run the web tests with
-
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=appium_ios_sim_web_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=appium_ios_sim_web_test.xml -Dregion=eu
-    
-The tests will be executed on a iPhone 8 Simulator.
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
-
-## Run Browser On Sauce Virtual Machine
-If you want to run the Web App tests on Sauce Labs VM then you can run the web tests with
-
-    // If using the US DC
-    mvn clean install -DtestngXmlFile=web_desktop_test.xml -Dregion=us
-    
-    // If using the EU DC
-    mvn clean install -DtestngXmlFile=web_desktop_test.xml -Dregion=eu
-    
-The tests will be executed on Windows 10, latest version of Chrome.
-> NOTE: Make sure you are in the folder `SauceAppiumSample` when you execute this command
