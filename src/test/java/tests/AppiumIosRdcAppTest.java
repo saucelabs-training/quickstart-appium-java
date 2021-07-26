@@ -1,4 +1,4 @@
-package tests.RDC;
+package tests;
 
 
 import io.appium.java_client.Setting;
@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static tests.Config.region;
+
 public class AppiumIosRdcAppTest {
 
     private static ThreadLocal<IOSDriver> iosDriver = new ThreadLocal<IOSDriver>();
@@ -39,11 +41,17 @@ public class AppiumIosRdcAppTest {
         System.out.println("Sauce iOS Native - BeforeMethod hook");
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-
-        String sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
+//        String sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
+        String sauceUrl;
+        if (region.equalsIgnoreCase("eu")) {
+            sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
+        } else {
+            sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
+        }
+        
         String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
         String appName = "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa";
-
+//        String appID = "9068cfba-d0cd-4027-99dc-ca70c5bf5278";
         String methodName = method.getName();
         URL url = new URL(SAUCE_REMOTE_URL);
 
@@ -51,8 +59,10 @@ public class AppiumIosRdcAppTest {
         capabilities.setCapability("deviceName", "iPhone 8.*");
 //        capabilities.setCapability("privateDevicesOnly", "true");
         capabilities.setCapability("platformName", "iOS");
+//        capabilities.setCapability("platformVersion", "14.3"); //added
+//        capabilities.setCapability("appiumVersion", ""); //added
         capabilities.setCapability("automationName", "XCuiTest");
-        capabilities.setCapability("app", "storage:filename="+appName);
+        capabilities.setCapability("app", "storage:"+appName);
         capabilities.setCapability("name", methodName);
         capabilities.setCapability("noReset", true);
         capabilities.setCapability("cacheId", "1234");

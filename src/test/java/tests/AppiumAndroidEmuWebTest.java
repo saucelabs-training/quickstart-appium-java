@@ -1,4 +1,4 @@
-package tests.EmuSim;
+package tests;
 
 
 import io.appium.java_client.android.AndroidDriver;
@@ -90,7 +90,7 @@ public class AppiumAndroidEmuWebTest {
         driver.get(url);
         login("standard_user", "secret_sauce");
 
-        // Verificsation
+        // Verification
         Assert.assertTrue(isOnProductsPage());
 
     }
