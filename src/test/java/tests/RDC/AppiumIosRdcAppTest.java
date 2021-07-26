@@ -56,13 +56,13 @@ public class AppiumIosRdcAppTest {
         URL url = new URL(SAUCE_REMOTE_URL);
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "iPhone 8.*");
-//        capabilities.setCapability("privateDevicesOnly", "true");
+        capabilities.setCapability("deviceName", "iPhone_11_14_real_us");
         capabilities.setCapability("platformName", "iOS");
-//        capabilities.setCapability("platformVersion", "14.3"); //added
-//        capabilities.setCapability("appiumVersion", ""); //added
         capabilities.setCapability("automationName", "XCuiTest");
         capabilities.setCapability("app", "storage:filename="+appName);
+//        capabilities.setCapability("platformVersion", "14.3"); //added
+//        capabilities.setCapability("appiumVersion", ""); //added
+//        capabilities.setCapability("privateDevicesOnly", "true");
 //        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
         capabilities.setCapability("name", methodName);
 //        capabilities.setCapability("noReset", true);
