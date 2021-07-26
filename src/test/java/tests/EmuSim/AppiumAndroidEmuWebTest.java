@@ -53,7 +53,7 @@ public class AppiumAndroidEmuWebTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         //DesiredCapabilities capabilities = new DesiredCapabilities();
         chromeOptions.setCapability("deviceName", "Android GoogleAPI Emulator");
-        chromeOptions.setCapability("platformVersion", "11.0");
+//        chromeOptions.setCapability("platformVersion", "11.0");
         chromeOptions.setCapability("platformName", "Android");
         chromeOptions.setCapability("automationName", "UiAutomator2");
         chromeOptions.setCapability("browserName", "Chrome");
