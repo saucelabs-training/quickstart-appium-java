@@ -62,8 +62,8 @@ public class AppiumIosRdcAppTest {
 //        capabilities.setCapability("platformVersion", "14.3"); //added
 //        capabilities.setCapability("appiumVersion", ""); //added
         capabilities.setCapability("automationName", "XCuiTest");
-//        capabilities.setCapability("app", "storage:"+appName);
-        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
+        capabilities.setCapability("app", "storage:filename="+appName);
+//        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
         capabilities.setCapability("name", methodName);
         capabilities.setCapability("noReset", true);
         capabilities.setCapability("cacheId", "1234");

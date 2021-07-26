@@ -15,7 +15,7 @@
         <commons-logging.version>1.2</commons-logging.version>
         <selenium.version>3.141.59</selenium.version>
         <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
-        <appium.version>7.4.1</appium.version>
+        <appium.version>7.5.1</appium.version>
     </properties>
 
     <dependencies>
