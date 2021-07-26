@@ -1,4 +1,4 @@
-package tests;
+package tests.RDC;
 
 
 import io.appium.java_client.Setting;
@@ -32,7 +32,8 @@ public class AppiumIosRdcAppTest {
     String usernameID = "test-Username";
     String passwordID = "test-Password";
     String submitButtonID = "test-LOGIN";
-    By ProductTitle = By.xpath("//XCUIElementTypeStaticText[@name=\"PRODUCTS\"]\n");
+    By productTitle = By.xpath("//XCUIElementTypeStaticText[@name=\"PRODUCTS\"]");
+    By errorMessage = By.xpath("//XCUIElementTypeOther[@name=\"test-Error message\"]/XCUIElementTypeStaticText");
 
 
     @BeforeMethod
@@ -41,7 +42,6 @@ public class AppiumIosRdcAppTest {
         System.out.println("Sauce iOS Native - BeforeMethod hook");
         String username = System.getenv("SAUCE_USERNAME");
         String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-//        String sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
         String sauceUrl;
         if (region.equalsIgnoreCase("eu")) {
             sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
@@ -62,7 +62,8 @@ public class AppiumIosRdcAppTest {
 //        capabilities.setCapability("platformVersion", "14.3"); //added
 //        capabilities.setCapability("appiumVersion", ""); //added
         capabilities.setCapability("automationName", "XCuiTest");
-        capabilities.setCapability("app", "storage:"+appName);
+//        capabilities.setCapability("app", "storage:"+appName);
+        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
         capabilities.setCapability("name", methodName);
         capabilities.setCapability("noReset", true);
         capabilities.setCapability("cacheId", "1234");
@@ -88,8 +89,8 @@ public class AppiumIosRdcAppTest {
     }
 
     @Test
-    public void loginToSwagLabsTestValid() {
-        System.out.println("Sauce - Start loginToSwagLabsTestValid test");
+    public void loginToSwagLabsStandardUserTest() {
+        System.out.println("Sauce - Start loginToSwagLabsStandardUserTest test");
         login("standard_user", "secret_sauce");
 
         // Verificsation
@@ -98,12 +99,12 @@ public class AppiumIosRdcAppTest {
     }
 
     @Test
-    public void loginToSwagLabsTestValid2() {
-        System.out.println("Sauce - Start loginToSwagLabsTestValid test");
-        login("standard_user", "secret_sauce");
+    public void loginToSwagLabsLockedUserTest() {
+        System.out.println("Sauce - Start loginToSwagLabsLockedUserTest test");
+        login("locked_out_user", "secret_sauce");
 
         // Verificsation
-        Assert.assertTrue(isOnProductsPage());
+        Assert.assertEquals(getLoginErrorMsg(),"Sorry, this user has been locked out.");
 
     }
 
@@ -127,7 +128,12 @@ public class AppiumIosRdcAppTest {
 
     public boolean isOnProductsPage() {
         IOSDriver driver = getiosDriver();
-        return driver.findElement(ProductTitle).isDisplayed();
+        return driver.findElement(productTitle).isDisplayed();
+    }
+
+    public String getLoginErrorMsg() {
+        IOSDriver driver = getiosDriver();
+        return driver.findElement(errorMessage).getText();
     }
 
 }

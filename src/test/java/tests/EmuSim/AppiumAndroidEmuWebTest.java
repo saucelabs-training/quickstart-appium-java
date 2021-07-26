@@ -1,4 +1,4 @@
-package tests;
+package tests.EmuSim;
 
 
 import io.appium.java_client.android.AndroidDriver;
