@@ -59,7 +59,7 @@ public class AppiumIosRdcAppTest {
         capabilities.setCapability("deviceName", "iPhone 8.*");
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("automationName", "XCuiTest");
-        capabilities.setCapability("app", "storage:filename="+appName); // or "filename:"+appID
+        capabilities.setCapability("app", "storage:filename="+appName); // or "storage:"+appID
         capabilities.setCapability("name", methodName);
 //        capabilities.setCapability("privateDevicesOnly", "true");
 //        capabilities.setCapability("platformVersion", "14.3"); //added
