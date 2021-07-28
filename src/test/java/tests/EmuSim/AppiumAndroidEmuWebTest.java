@@ -100,6 +100,7 @@ public class AppiumAndroidEmuWebTest {
 
         driver.findElement(usernameInput).sendKeys(user);
         driver.findElement(passwordInput).sendKeys(pass);
+        driver.hideKeyboard();
 
         driver.findElement(submitButton).click();
 
