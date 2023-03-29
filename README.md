@@ -15,7 +15,7 @@ The examples in this repository that can run on Sauce Labs use environment varia
     export SAUCE_ACCESS_KEY=*******
     
 ### Demo app(s)
-The Native demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).
+The Native demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-rn/releases).
 Be aware of the fact that you need the build for the iOS real device. So please check the file you download.
 
 > The advice is to download the files to an `apps` folder in the root of this folder.
