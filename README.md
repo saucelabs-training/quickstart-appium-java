@@ -1,11 +1,9 @@
 # Running Appium and Selenium Tests on Sauce Labs Platform
-This project contains TestNG Java examples for two examples of tests that can be run on the Sauce Labs Cloud, intended to go alongside the [Doc](). For comprehensive examples of both Appium and iOS on Sauce Labs VM & Real Devices for both web and app tests, [see this repo](https://github.com/eyaly/SauceAppiumSample#readme). 
+This project contains TestNG Java examples for two examples of tests that can be run on the Sauce Labs Cloud.
 
 * The first is an Android Appium test on a mobile browser, using the [Swag Labs web app](https://www.saucedemo.com/) testing on an emulator on a Sauce Labs VM
-* The Second is an iOS Appium test run against the [Swage Labs (React) mobile app](https://github.com/saucelabs/sample-app-mobile/releases) testing on a Sauce Labs Real Device
+* The Second is an iOS Appium test run against the [Swage Labs (React) mobile app](https://github.com/saucelabs/my-demo-app-rn/releases) testing on a Sauce Labs Real Device
 
-
-The framework uses testNG xml file for parallel executions. All the tests in the same class will run in parallel on different devices 
 ## Important information
 ### Environment variables for Sauce Labs
 The examples in this repository that can run on Sauce Labs use environment variables, make sure you've added the following
@@ -15,7 +13,7 @@ The examples in this repository that can run on Sauce Labs use environment varia
     export SAUCE_ACCESS_KEY=*******
     
 ### Demo app(s)
-The Native demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/sample-app-mobile/releases).
+The Native demo app that has been used for all these tests can be found [here](https://github.com/saucelabs/my-demo-app-rn/releases).
 Be aware of the fact that you need the build for the iOS real device. So please check the file you download.
 
 > The advice is to download the files to an `apps` folder in the root of this folder.
