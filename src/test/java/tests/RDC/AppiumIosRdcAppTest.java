@@ -1,12 +1,12 @@
 package tests.RDC;
 
-
-import io.appium.java_client.Setting;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.remote.AutomationName;
+import io.appium.java_client.remote.MobilePlatform;
+import org.joda.time.DateTime;
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,60 +15,65 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static tests.Config.region;
+import java.time.Duration;
+import static tests.Config.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class AppiumIosRdcAppTest {
 
     private static ThreadLocal<IOSDriver> iosDriver = new ThreadLocal<IOSDriver>();
 
-    String usernameID = "test-Username";
-    String passwordID = "test-Password";
-    String submitButtonID = "test-LOGIN";
-    By productTitle = By.xpath("//XCUIElementTypeStaticText[@name=\"PRODUCTS\"]");
-    By errorMessage = By.xpath("//XCUIElementTypeOther[@name=\"test-Error message\"]/XCUIElementTypeStaticText");
-
+    AppiumBy.ByAccessibilityId productScreenLocator = new AppiumBy.ByAccessibilityId("products screen");
+    AppiumBy.ByAccessibilityId sortButtonLocator = new AppiumBy.ByAccessibilityId("sort button");
+    AppiumBy.ByAccessibilityId sortModalLocator = new AppiumBy.ByAccessibilityId("active option");
 
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
+        String appName = "iOS-Real-Device-MyRNDemoApp.ipa";
 
         System.out.println("Sauce iOS Native - BeforeMethod hook");
-        String username = System.getenv("SAUCE_USERNAME");
-        String accesskey = System.getenv("SAUCE_ACCESS_KEY");
-        String sauceUrl;
-        if (region.equalsIgnoreCase("eu")) {
-            sauceUrl = "@ondemand.eu-central-1.saucelabs.com:443";
-        } else {
-            sauceUrl = "@ondemand.us-west-1.saucelabs.com:443";
-        }
-        
-        String SAUCE_REMOTE_URL = "https://" + username + ":" + accesskey + sauceUrl +"/wd/hub";
-        String appName = "iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa";
-//        String appID = "9068cfba-d0cd-4027-99dc-ca70c5bf5278";
-        String methodName = method.getName();
-        URL url = new URL(SAUCE_REMOTE_URL);
+        URL url;
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "iPhone 8.*");
-        capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("automationName", "XCuiTest");
-        capabilities.setCapability("app", "storage:filename="+appName); // or "storage:"+appID
-        capabilities.setCapability("name", methodName);
-//        capabilities.setCapability("privateDevicesOnly", "true");
-//        capabilities.setCapability("platformVersion", "14.3"); //added
-//        capabilities.setCapability("appiumVersion", ""); //added
-//        capabilities.setCapability("app", "https://github.com/saucelabs/sample-app-mobile/releases/download/2.7.1/iOS.RealDevice.SauceLabs.Mobile.Sample.app.2.7.1.ipa");
-//        capabilities.setCapability("noReset", true);
-//        capabilities.setCapability("cacheId", "1234");
-//        capabilities.setCapability("tags", "sauceDemo1");
-//        capabilities.setCapability("build", "myBuild1");
+        switch (region) {
+            case "us":
+                System.out.println("region is us");
+                url = new URL(SAUCE_US_URL);
+                break;
+            case "eu":
+            default:
+                System.out.println("region is eu");
+                url = new URL(SAUCE_EU_URL);
+                break;
+        }
+
+        MutableCapabilities capabilities = new MutableCapabilities();
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        // For all capabilities please check
+        // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
+        // https://docs.saucelabs.com/dev/test-configuration-options/#mobile-appium-capabilities
+        // Use the platform configuration https://saucelabs.com/platform/platform-configurator#/
+        // to find the simulators/real device names, OS versions and appium versions you can use for your testings
+        capabilities.setCapability("platformName", MobilePlatform.IOS);
+        capabilities.setCapability("appium:automationName", AutomationName.IOS_XCUI_TEST);
+        capabilities.setCapability("appium:deviceName", "iPhone.*");
+        capabilities.setCapability("appium:platformVersion", "1[5-6].*");
+        capabilities.setCapability("appium:app", "storage:filename=" + appName );
+
+        // Sauce capabilities
+        sauceOptions.setCapability("resigningEnabled", true);
+        sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+        sauceOptions.setCapability("name", method.getName());
+        DateTime dt = new DateTime();
+        sauceOptions.setCapability("build", "RDC Native Simple Example: build-" + dt.hourOfDay().getAsText() + "-" + dt.minuteOfHour().getAsText());
+        sauceOptions.setCapability("username", SAUCE_USERNAME);
+        sauceOptions.setCapability("accessKey", SAUCE_ACCESS_KEY);
+        sauceOptions.setCapability("appiumVersion", "2.0.0");
+        capabilities.setCapability("sauce:options", sauceOptions);
+
         try {
             iosDriver.set(new IOSDriver(url, capabilities));
         } catch (Exception e) {
@@ -89,51 +94,21 @@ public class AppiumIosRdcAppTest {
     }
 
     @Test
-    public void loginToSwagLabsStandardUserTest() {
-        System.out.println("Sauce - Start loginToSwagLabsStandardUserTest test");
-        login("standard_user", "secret_sauce");
+    public void verifySortOptionsScreen() {
+        System.out.println("Sauce - Start verifySortOptionsScreen test");
 
-        // Verificsation
-        Assert.assertTrue(isOnProductsPage());
-
-    }
-
-    @Test
-    public void loginToSwagLabsLockedUserTest() {
-        System.out.println("Sauce - Start loginToSwagLabsLockedUserTest test");
-        login("locked_out_user", "secret_sauce");
-
-        // Verificsation
-        Assert.assertEquals(getLoginErrorMsg(),"Sorry, this user has been locked out.");
-
-    }
-
-    public void login(String user, String pass){
         IOSDriver driver = getiosDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-//        WebElement usernameEdit = (WebElement) driver.findElementByAccessibilityId(usernameID);
-        List<IOSElement> usernameEdit = (List<IOSElement>) driver.findElementsByAccessibilityId(usernameID);
+        // wait for the main page
+        wait.until(ExpectedConditions.visibilityOfElementLocated(productScreenLocator));
 
-        usernameEdit.get(0).click();
-        usernameEdit.get(0).sendKeys(user);
+        driver.findElement(sortButtonLocator).click();
 
-
-        WebElement passwordEdit = (WebElement) driver.findElementByAccessibilityId(passwordID);
-        passwordEdit.click();
-        passwordEdit.sendKeys(pass);
-
-        WebElement submitButton = (WebElement) driver.findElementByAccessibilityId(submitButtonID);
-        submitButton.click();
+        //assertion - Verify the sort modal is displayed on screen
+        assertThat(driver.findElement(sortModalLocator).isDisplayed(), is(true));
     }
 
-    public boolean isOnProductsPage() {
-        IOSDriver driver = getiosDriver();
-        return driver.findElement(productTitle).isDisplayed();
-    }
 
-    public String getLoginErrorMsg() {
-        IOSDriver driver = getiosDriver();
-        return driver.findElement(errorMessage).getText();
-    }
 
 }
