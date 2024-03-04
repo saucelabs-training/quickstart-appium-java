@@ -65,7 +65,7 @@ public class AppiumIosRdcAppTest {
 
         // Sauce capabilities
         sauceOptions.setCapability("resigningEnabled", true);
-        sauceOptions.setCapability("sauceLabsNetworkCaptureEnabled", true);
+        sauceOptions.setCapability("networkCapture", true);
         sauceOptions.setCapability("name", method.getName());
         DateTime dt = new DateTime();
         sauceOptions.setCapability("build", "RDC Native Simple Example: build-" + dt.hourOfDay().getAsText() + "-" + dt.minuteOfHour().getAsText());
