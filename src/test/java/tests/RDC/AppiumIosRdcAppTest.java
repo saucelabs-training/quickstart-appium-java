@@ -71,7 +71,7 @@ public class AppiumIosRdcAppTest {
         sauceOptions.setCapability("build", "RDC Native Simple Example: build-" + dt.hourOfDay().getAsText() + "-" + dt.minuteOfHour().getAsText());
         sauceOptions.setCapability("username", SAUCE_USERNAME);
         sauceOptions.setCapability("accessKey", SAUCE_ACCESS_KEY);
-        sauceOptions.setCapability("appiumVersion", "2.0.0");
+        sauceOptions.setCapability("appiumVersion", "stable");
         capabilities.setCapability("sauce:options", sauceOptions);
 
         try {
