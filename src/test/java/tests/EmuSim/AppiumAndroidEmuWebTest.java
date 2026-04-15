@@ -1,15 +1,9 @@
 package tests.EmuSim;
 
-
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.AutomationName;
-import io.appium.java_client.remote.MobileBrowserType;
-import io.appium.java_client.remote.MobilePlatform;
-import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
-
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -19,16 +13,16 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.System.out;
 import static tests.Config.*;
 
 
 public class AppiumAndroidEmuWebTest {
 
-    private static ThreadLocal<AndroidDriver> androidDriver = new ThreadLocal<AndroidDriver>();
+    private static final ThreadLocal<AndroidDriver> androidDriver = new ThreadLocal<>();
 
     String url = "https://www.saucedemo.com/";
 
@@ -60,22 +54,22 @@ public class AppiumAndroidEmuWebTest {
         }
 
         // For all capabilities please check
-        // http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
+        // https://appium.io/docs/en/latest/guides/caps/
         // https://docs.saucelabs.com/dev/test-configuration-options/#mobile-appium-capabilities
         // Use the platform configuration https://saucelabs.com/platform/platform-configurator#/
         // to find the simulators/real device names, OS versions and appium versions you can use for your testings
 
-        capabilities.setCapability("platformName", MobilePlatform.ANDROID);
-        capabilities.setCapability("appium:automationName", AutomationName.ANDROID_UIAUTOMATOR2);
-        capabilities.setCapability("browserName", MobileBrowserType.CHROME);
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("appium:automationName", "UiAutomator2");
+        capabilities.setCapability("browserName", "Chrome");
 
-        capabilities.setCapability("appium:deviceName",  "Android GoogleAPI Emulator");
-        capabilities.setCapability("appium:platformVersion",  "13.0");
+        capabilities.setCapability("appium:deviceName", "Android GoogleAPI Emulator");
+        capabilities.setCapability("appium:platformVersion", "13.0");
         capabilities.setCapability("appium:deviceOrientation", "portrait");
 
         sauceOptions.setCapability("name", method.getName());
-        DateTime dt = new DateTime();
-        sauceOptions.setCapability("build", "Emulator Simple Example: build-" + dt.hourOfDay().getAsText() + "-" + dt.minuteOfHour().getAsText());
+        LocalDateTime now = LocalDateTime.now();
+        sauceOptions.setCapability("build", "Emulator Simple Example: build-" + now.getHour() + "-" + now.getMinute());
         List<String> tags = Arrays.asList("sauceDemo_web_android", "android", "Demo");
         sauceOptions.setCapability("tags", tags);
         sauceOptions.setCapability("username", SAUCE_USERNAME);
@@ -86,7 +80,7 @@ public class AppiumAndroidEmuWebTest {
         try {
             androidDriver.set(new AndroidDriver(url, capabilities));
         } catch (Exception e) {
-            out.println("*** Problem to create the Android driver " + e.getMessage());
+            System.out.println("*** Problem to create the Android driver " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -102,7 +96,7 @@ public class AppiumAndroidEmuWebTest {
         }
     }
 
-    public  AndroidDriver getAndroidDriver() {
+    public AndroidDriver getAndroidDriver() {
         return androidDriver.get();
     }
 
@@ -118,12 +112,11 @@ public class AppiumAndroidEmuWebTest {
 
     }
 
-    public void login(String user, String pass){
+    public void login(String user, String pass) {
         AndroidDriver driver = getAndroidDriver();
 
         driver.findElement(usernameInput).sendKeys(user);
         driver.findElement(passwordInput).sendKeys(pass);
-        driver.hideKeyboard();
 
         driver.findElement(submitButton).click();
 
